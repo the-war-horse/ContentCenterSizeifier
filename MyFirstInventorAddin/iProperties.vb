@@ -115,6 +115,19 @@ Namespace ContentCenterSizeifier
             End If
         End Function
 
+        ''' <summary>
+        ''' This signature is slightly different to the others because we can't update 'Standard' Content Centre object iProperties.
+        ''' </summary>
+        ''' <param name="DocToReadValueFrom"></param>
+        ''' <param name="iPropertyTypeEnum"></param>
+        ''' <returns></returns>
+        Public Shared Function GetorSetStandardiProperty(ByVal DocToReadValueFrom As Inventor.Document,
+                                                         ByVal iPropertyTypeEnum As PropertiesForContentLibraryEnum) As String
+            Dim invContentCentreProperties As PropertySet = DocToReadValueFrom.PropertySets.Item("{B9600981-DEE8-4547-8D7C-E525B3A1727A}")
+            Dim currentValue As String = invContentCentreProperties.ItemByPropId(iPropertyTypeEnum).Value
+            Return currentValue
+        End Function
+
 #End Region
 
 #Region "Get or Set Custom iProperty Values"
