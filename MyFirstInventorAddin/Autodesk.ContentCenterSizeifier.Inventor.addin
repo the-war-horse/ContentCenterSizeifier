@@ -1,7 +1,7 @@
 <Addin Type="Standard">
   <!--Created for Autodesk Inventor Version 21.0-->
-  <ClassId>{e691af34-cb32-4296-8cca-5d1027a27c72}</ClassId>
-  <ClientId>{e691af34-cb32-4296-8cca-5d1027a27c72}</ClientId>
+  <ClassId>{0A36F323-0005-408D-8049-2B40A4E9690A}</ClassId>
+  <ClientId>{0A36F323-0005-408D-8049-2B40A4E9690A}</ClientId>
   <DisplayName>ContentCenterSizeifier</DisplayName>
   <Description>ContentCenterSizeifier</Description>
   <Assembly>ContentCenterSizeifier.dll</Assembly>

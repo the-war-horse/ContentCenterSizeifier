@@ -8,7 +8,7 @@ Imports Inventor
 Namespace ContentCenterSizeifier
 
     <ProgIdAttribute("ContentCenterSizeifier.StandardAddInServer"),
-    GuidAttribute("e691af34-cb32-4296-8cca-5d1027a27c72")>
+    GuidAttribute("0A36F323-0005-408D-8049-2B40A4E9690A")>
     Public Class SizeifierAddInServer
         Implements Inventor.ApplicationAddInServer
 
