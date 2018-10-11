@@ -121,7 +121,7 @@ Namespace ContentCenterSizeifier
         ''' <param name="DocToReadValueFrom"></param>
         ''' <param name="iPropertyTypeEnum"></param>
         ''' <returns></returns>
-        Public Shared Function GetorSetStandardiProperty(ByVal DocToReadValueFrom As Inventor.Document,
+        Public Shared Function GetorSetStandardiProperty(ByVal DocToReadValueFrom As PartDocument,
                                                          ByVal iPropertyTypeEnum As PropertiesForContentLibraryEnum) As String
             Dim invContentCentreProperties As PropertySet = DocToReadValueFrom.PropertySets.Item("{B9600981-DEE8-4547-8D7C-E525B3A1727A}")
             Dim currentValue As String = invContentCentreProperties.ItemByPropId(iPropertyTypeEnum).Value

@@ -2,6 +2,7 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Reflection
 Imports System.Runtime.InteropServices
+Imports System.Linq
 'Imports System.Windows.Forms
 Imports Inventor
 
@@ -145,7 +146,15 @@ Namespace ContentCenterSizeifier
                                     If TypeOf compOcc.Definition.Document Is PartDocument Then
                                         Dim oDoc As Document = compOcc.Definition.Document
                                         If oDoc.FullFileName.Contains("Content Center") Then
+                                            Dim thisPartDoc As PartDocument = compOcc.Definition.Document
                                             SizeifierForm.tbCurrentPart.Text = iProperties.GetorSetStandardiProperty(oDoc, PropertiesForDesignTrackingPropertiesEnum.kDescriptionDesignTrackingProperties, "", "")
+                                            Dim family As ContentFamily = Nothing
+                                            Dim memberRow As ContentTableRow = Nothing
+                                            Dim memberRowStr As String = String.Empty
+                                            GetContentCentreProperties(thisPartDoc, family, memberRow, memberRowStr)
+                                            memberRow = (From row As ContentTableRow In family.TableRows
+                                                         Where row.InternalName = memberRowStr
+                                                         Select row).FirstOrDefault()
                                             SizeifierForm.ListSizes = Nothing
 
                                         Else
@@ -169,6 +178,25 @@ Namespace ContentCenterSizeifier
                 End Try
             End If
         End Sub
+
+        ''' <summary>
+        ''' Gets the necessary CC-specifics to allow us to query the CC and get the rest of the relevant rows.
+        ''' </summary>
+        ''' <param name="partDoc"></param>
+        ''' <param name="ccFamily"></param>
+        ''' <param name="ccMemberRow"></param>
+        Private Sub GetContentCentreProperties(ByVal partDoc As PartDocument, ByRef ccFamily As ContentFamily, ByRef ccMemberRow As ContentTableRow, ByRef ccMemberRowStr As String)
+            Dim ContentCentre As ContentCenter = AddinGlobal.InventorApp.ContentCenter
+            Dim partCompDef As PartComponentDefinition = partDoc.ComponentDefinition
+            If partCompDef.IsContentMember Then
+                ccFamily = ContentCentre.GetContentObject("v3#" + iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kFamilyIdContentLibrary) + "#")
+                ccMemberRowStr = iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kMemberIdContentLibrary)
+                'ccMemberRow = ContentCentre.GetContentObject("v3#" + iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kMemberIdContentLibrary))
+            Else
+                Throw New NotImplementedException("We haven't designed this tool for working with custom Content Centre parts yet, sorry!")
+            End If
+        End Sub
+
 
         Private Sub m_ApplicationEvents_OnQuit(BeforeOrAfter As EventTimingEnum, Context As NameValueMap, ByRef HandlingCode As HandlingCodeEnum)
             If BeforeOrAfter = EventTimingEnum.kBefore Then
