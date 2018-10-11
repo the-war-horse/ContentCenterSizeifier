@@ -95,7 +95,7 @@
     <Compile Include="AddinGlobal.vb" />
     <Compile Include="AssemblyInfo.vb" />
     <Compile Include="ButtonActions.vb" />
-    <Compile Include="InventorButton.vb" />
+    <Compile Include="SizeifierButton.vb" />
     <Compile Include="iProperties.vb" />
     <Compile Include="SizeifierForm.Designer.vb">
       <DependentUpon>SizeifierForm.vb</DependentUpon>
@@ -117,6 +117,7 @@
   <ItemGroup>
     <None Include="Autodesk.ContentCenterSizeifier.Inventor.addin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

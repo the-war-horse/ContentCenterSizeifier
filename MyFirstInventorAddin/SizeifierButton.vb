@@ -4,7 +4,7 @@ Imports Inventor
 
 Namespace ContentCenterSizeifier
 
-    Public Class InventorButton
+    Public Class SizeifierButton
 
         Private mButtonDef As ButtonDefinition
 
@@ -71,7 +71,7 @@ Namespace ContentCenterSizeifier
             insertBeforeTarget = insertBeforeTarget
         End Sub
 
-        Public Sub CopyBehaviorFrom(ByVal button As InventorButton)
+        Public Sub CopyBehaviorFrom(ByVal button As SizeifierButton)
             DisplayBigIcon = button.DisplayBigIcon
             DisplayText = button.DisplayText
             InsertBeforeTarget = Me.InsertBeforeTarget

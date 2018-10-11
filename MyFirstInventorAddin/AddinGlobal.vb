@@ -11,7 +11,7 @@ Public Class AddinGlobal
 
     Public Shared RibbonPanel As RibbonPanel
 
-    Public Shared ButtonList As List(Of InventorButton) = New List(Of InventorButton)()
+    Public Shared ButtonList As List(Of SizeifierButton) = New List(Of SizeifierButton)()
 
     Public Shared DockableList As List(Of DockableWindow) = New List(Of DockableWindow)()
 

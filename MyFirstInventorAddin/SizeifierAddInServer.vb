@@ -65,30 +65,30 @@ Namespace ContentCenterSizeifier
                     AddHandler m_DocEvents.OnChangeSelectSet, AddressOf Me.m_DocumentEvents_OnChangeSelectSet
                 End If
 
-                ' TODO: Add button definitions.
+            ' TODO: Add button definitions.
 
-                ' Sample to illustrate creating a button definition.
-                'Dim largeIcon As stdole.IPictureDisp = PictureDispConverter.ToIPictureDisp(My.Resources.YourBigImage)
-                'Dim smallIcon As stdole.IPictureDisp = PictureDispConverter.ToIPictureDisp(My.Resources.YourSmallImage)
-                'Dim controlDefs As Inventor.ControlDefinitions = g_inventorApplication.CommandManager.ControlDefinitions
-                'm_sampleButton = controlDefs.AddButtonDefinition("Command Name", "Internal Name", CommandTypesEnum.kShapeEditCmdType, AddInClientID)
+            ' Sample to illustrate creating a button definition.
+            'Dim largeIcon As stdole.IPictureDisp = PictureDispConverter.ToIPictureDisp(My.Resources.YourBigImage)
+            'Dim smallIcon As stdole.IPictureDisp = PictureDispConverter.ToIPictureDisp(My.Resources.YourSmallImage)
+            'Dim controlDefs As Inventor.ControlDefinitions = g_inventorApplication.CommandManager.ControlDefinitions
+            'm_sampleButton = controlDefs.AddButtonDefinition("Command Name", "Internal Name", CommandTypesEnum.kShapeEditCmdType, AddInClientID)
 
-                Dim icon1 As New Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("ContentCenterSizeifier.addin.ico"))
-                'Change it if necessary but make sure it's embedded.
-                Dim button1 As New InventorButton("Button 1", "MyVBInventorAddin.Button_" & Guid.NewGuid().ToString(), "Button 1 description", "Button 1 tooltip", icon1, icon1,
+            'Dim icon1 As New Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("ContentCenterSizeifier.addin.ico"))
+            'Change it if necessary but make sure it's embedded.
+            Dim button2 As New SizeifierButton("Button 2", "Sizeifier.Button_" & Guid.NewGuid().ToString(), "Button 2 description", "Button 1 tooltip",
                     CommandTypesEnum.kShapeEditCmdType, ButtonDisplayEnum.kDisplayTextInLearningMode)
-                button1.SetBehavior(True, True, True)
-                button1.Execute = AddressOf ButtonActions.Button1_Execute
+            button2.SetBehavior(True, True, True)
+            button2.Execute = AddressOf ButtonActions.Button1_Execute
 
-                ' Add to the user interface, if it's the first time.
-                If firstTime Then
-                    AddToUserInterface(button1)
-                    'add our userform to a new DockableWindow
-                    Dim localWindow As DockableWindow = Nothing
-                    myiPropsForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, localWindow)
-                    Window = localWindow
+            ' Add to the user interface, if it's the first time.
+            If firstTime Then
+                AddToUserInterface(button2)
+                'add our userform to a new DockableWindow
+                Dim SizeifierWindow As DockableWindow = Nothing
+                myiPropsForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, SizeifierWindow)
+                Window = SizeifierWindow
 
-                End If
+            End If
         End Sub
 
         Public Shared Sub UpdateStatusBar(ByVal Message As String)
@@ -139,7 +139,7 @@ Namespace ContentCenterSizeifier
                                     End If
                                 End If
 
-                                End If
+                            End If
 
                         End If
                         'End If
@@ -167,18 +167,18 @@ Namespace ContentCenterSizeifier
         Public Shared Function CheckReadOnly(ByVal doc As Document) As Boolean
             ' Handle the case with the active document never saved
             If System.IO.File.Exists(doc.FullFileName) = False Then
-                    UpdateStatusBar("Save file before executing this method. Exiting ...")
-                    Return False
-                End If
+                UpdateStatusBar("Save file before executing this method. Exiting ...")
+                Return False
+            End If
 
-                Dim atts As FileAttributes = IO.File.GetAttributes(doc.FullFileName)
+            Dim atts As FileAttributes = IO.File.GetAttributes(doc.FullFileName)
 
-                If ((atts And FileAttributes.ReadOnly) = System.IO.FileAttributes.ReadOnly) Then
-                    Return True
-                Else
-                    'The file is Read/Write
-                    Return False
-                End If
+            If ((atts And FileAttributes.ReadOnly) = System.IO.FileAttributes.ReadOnly) Then
+                Return True
+            Else
+                'The file is Read/Write
+                Return False
+            End If
 
         End Function
 
@@ -186,36 +186,36 @@ Namespace ContentCenterSizeifier
         ' unloaded either manually by the user or when the Inventor session is terminated.
         Public Sub Deactivate() Implements Inventor.ApplicationAddInServer.Deactivate
             ' TODO:  Add ApplicationAddInServer.Deactivate implementation
-            For Each item As InventorButton In AddinGlobal.ButtonList
-                    Marshal.FinalReleaseComObject(item.ButtonDef)
-                Next
+            For Each item As SizeifierButton In AddinGlobal.ButtonList
+                Marshal.FinalReleaseComObject(item.ButtonDef)
+            Next
 
-                For Each item As DockableWindow In AddinGlobal.DockableList
-                    Marshal.FinalReleaseComObject(item)
-                Next
+            For Each item As DockableWindow In AddinGlobal.DockableList
+                Marshal.FinalReleaseComObject(item)
+            Next
 
-                ' Release objects.
+            ' Release objects.
 
-                m_UserInputEvents = Nothing
-                m_AppEvents = Nothing
-                m_uiEvents = Nothing
-                m_StyleEvents = Nothing
+            m_UserInputEvents = Nothing
+            m_AppEvents = Nothing
+            m_uiEvents = Nothing
+            m_StyleEvents = Nothing
 
-                thisAssembly = Nothing
-                myiPropsForm = Nothing
+            thisAssembly = Nothing
+            myiPropsForm = Nothing
 
-                If AddinGlobal.RibbonPanel IsNot Nothing Then
-                    Marshal.FinalReleaseComObject(AddinGlobal.RibbonPanel)
+            If AddinGlobal.RibbonPanel IsNot Nothing Then
+                Marshal.FinalReleaseComObject(AddinGlobal.RibbonPanel)
+            End If
+
+            If Not InventorAppQuitting Then
+                If AddinGlobal.InventorApp IsNot Nothing Then
+                    Marshal.FinalReleaseComObject(AddinGlobal.InventorApp)
                 End If
+            End If
 
-                If Not InventorAppQuitting Then
-                    If AddinGlobal.InventorApp IsNot Nothing Then
-                        Marshal.FinalReleaseComObject(AddinGlobal.InventorApp)
-                    End If
-                End If
-
-                GC.Collect()
-                GC.WaitForPendingFinalizers()
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
 
         End Sub
 
@@ -259,7 +259,7 @@ Namespace ContentCenterSizeifier
 
         ' Sub where the user-interface creation is done.  This is called when
         ' the add-in loaded and also if the user interface is reset.
-        Private Sub AddToUserInterface(button1 As InventorButton)
+        Private Sub AddToUserInterface(button2 As SizeifierButton)
             ' This is where you'll add code to add buttons to the ribbon.
 
             '** Sample to illustrate creating a button on a new panel of the Tools tab of the Part ribbon.
@@ -277,20 +277,20 @@ Namespace ContentCenterSizeifier
             'customPanel.CommandControls.AddButton(m_sampleButton)
             Dim uiMan As UserInterfaceManager = AddinGlobal.InventorApp.UserInterfaceManager
             If uiMan.InterfaceStyle = InterfaceStyleEnum.kRibbonInterface Then
-                    'kClassicInterface support can be added if necessary.
-                    Dim ribbon As Inventor.Ribbon = uiMan.Ribbons("Part")
-                    Dim tab As RibbonTab
-                    Try
-                        tab = ribbon.RibbonTabs("id_TabSheetMetal") 'Change it if necessary.
-                    Catch
-                        tab = ribbon.RibbonTabs.Add("id_TabSheetMetal", "id_Tabid_TabSheetMetal", Guid.NewGuid().ToString())
-                    End Try
-                    AddinGlobal.RibbonPanelId = "{51f8ccf4-5fc6-4592-b68d-e19c993f5faa}"
-                    AddinGlobal.RibbonPanel = tab.RibbonPanels.Add("InventorNetAddin", "MyVBInventorAddin.RibbonPanel_" & Guid.NewGuid().ToString(), AddinGlobal.RibbonPanelId, String.Empty, True)
+                'kClassicInterface support can be added if necessary.
+                Dim ribbon As Inventor.Ribbon = uiMan.Ribbons("Part")
+                Dim tab As RibbonTab
+                Try
+                    tab = ribbon.RibbonTabs("id_TabSheetMetal") 'Change it if necessary.
+                Catch
+                    tab = ribbon.RibbonTabs.Add("id_TabSheetMetal", "id_Tabid_TabSheetMetal", Guid.NewGuid().ToString())
+                End Try
+                AddinGlobal.RibbonPanelId = "{0A36F323-0005-408D-8049-2B40A4E9690A}"
+                AddinGlobal.RibbonPanel = tab.RibbonPanels.Add("SizeifierAddin", "SizeifierAddin.RibbonPanel_" & Guid.NewGuid().ToString(), AddinGlobal.RibbonPanelId, String.Empty, True)
 
-                    Dim cmdCtrls As CommandControls = AddinGlobal.RibbonPanel.CommandControls
-                    cmdCtrls.AddButton(button1.ButtonDef, button1.DisplayBigIcon, button1.DisplayText, "", button1.InsertBeforeTarget)
-                End If
+                Dim cmdCtrls As CommandControls = AddinGlobal.RibbonPanel.CommandControls
+                cmdCtrls.AddButton(button2.ButtonDef, button2.DisplayBigIcon, button2.DisplayText, "", button2.InsertBeforeTarget)
+            End If
         End Sub
 
         Protected Overrides Sub Finalize()
