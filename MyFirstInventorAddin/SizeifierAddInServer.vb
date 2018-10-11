@@ -133,12 +133,13 @@ Namespace ContentCenterSizeifier
                             Dim AssyDoc As AssemblyDocument = AddinGlobal.InventorApp.ActiveDocument
                             If AssyDoc.SelectSet.Count = 1 Then
                                 If TypeOf AssyDoc.SelectSet(1) Is ComponentOccurrence Then
-
-                                Else
-
+                                    Dim oDoc As Document = AssyDoc.SelectSet(1)
+                                    If oDoc.FullFileName.Contains("Content Center") Then
+                                        myiPropsForm.tbCurrentPart.Text = iProperties.GetorSetStandardiProperty(oDoc, PropertiesForDesignTrackingPropertiesEnum.kDescriptionDesignTrackingProperties, "", "")
+                                    End If
                                 End If
 
-                            End If
+                                End If
 
                         End If
                         'End If

@@ -77,12 +77,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Autodesk.Inventor.Interop\v4.0_21.0.0.0__d84147f8b4276564\autodesk.inventor.interop.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Autodesk\Content Service\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Log4NetFileHelper">
-      <HintPath>..\..\..\..\..\..\..\ProgramData\Autodesk\Inventor Addins\iPropertiesController\Log4NetFileHelper.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

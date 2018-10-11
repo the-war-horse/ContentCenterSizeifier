@@ -6,43 +6,40 @@ Imports log4net
 Public Class SizeifierForm
     'Inherits Form
     Private inventorApp As Inventor.Application
-    Private localWindow As DockableWindow
+    Private DocaWindow As DockableWindow
     Private value As String
     Public Declare Sub Sleep Lib "kernel32" Alias "Sleep" (ByVal dwMilliseconds As Long)
 
-    Public ReadOnly log As ILog = LogManager.GetLogger(GetType(SizeifierForm))
-
     Public Sub New(ByVal inventorApp As Inventor.Application, ByVal addinCLS As String, ByRef localWindow As DockableWindow)
-        Try
-            log.Debug("Loading iProperties Form")
-            InitializeComponent()
 
-            'Me.KeyPreview = True
-            Me.inventorApp = inventorApp
-            Me.value = addinCLS
-            Me.localWindow = localWindow
-            Dim uiMgr As UserInterfaceManager = inventorApp.UserInterfaceManager
+        InitializeComponent()
+
+        'Me.KeyPreview = True
+        Me.inventorApp = inventorApp
+        Me.value = addinCLS
+        Me.DocaWindow = localWindow
+        Dim uiMgr As UserInterfaceManager = inventorApp.UserInterfaceManager
             Dim addinName As String = lbAddinName.Text
-            Dim myDockableWindow As DockableWindow = uiMgr.DockableWindows.Add(addinCLS, "iPropertiesControllerWindow", "iProperties Controller " + addinName)
-            myDockableWindow.AddChild(Me.Handle)
+        Dim SizeifierWindow As DockableWindow = uiMgr.DockableWindows.Add(addinCLS, "ContentCenterSizeifierWindow", "Content Center Sizeifier " + addinName)
+        SizeifierWindow.AddChild(Me.Handle)
 
-            If Not myDockableWindow.IsCustomized = True Then
-                'myDockableWindow.DockingState = DockingStateEnum.kFloat
-                myDockableWindow.DockingState = DockingStateEnum.kDockLastKnown
-            Else
-                myDockableWindow.DockingState = DockingStateEnum.kFloat
-            End If
+        If Not SizeifierWindow.IsCustomized = True Then
+            'SizeifierWindow.DockingState = DockingStateEnum.kFloat
+            SizeifierWindow.DockingState = DockingStateEnum.kDockLastKnown
+        Else
+            SizeifierWindow.DockingState = DockingStateEnum.kFloat
+        End If
 
-            myDockableWindow.DisabledDockingStates = DockingStateEnum.kDockTop + DockingStateEnum.kDockBottom
+        SizeifierWindow.DisabledDockingStates = DockingStateEnum.kDockTop + DockingStateEnum.kDockBottom
 
-            Me.Dock = DockStyle.Fill
-            Me.Visible = True
-            localWindow = myDockableWindow
-            AddinGlobal.DockableList.Add(myDockableWindow)
-        Catch ex As Exception
-            log.Error(ex.Message)
-        End Try
-        log.Info("iProperties Form Loaded")
+        Me.Dock = DockStyle.Fill
+        Me.Visible = True
+        localWindow = SizeifierWindow
+        AddinGlobal.DockableList.Add(SizeifierWindow)
+
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
 
     End Sub
 

@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.Runtime.InteropServices
 Imports Inventor
-Imports iPropertiesController.iPropertiesController
+Imports ContentCenterSizeifier.ContentCenterSizeifier
 
 Public Class AddinGlobal
 
