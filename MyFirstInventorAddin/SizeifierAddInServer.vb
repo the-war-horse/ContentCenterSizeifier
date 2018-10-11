@@ -29,7 +29,7 @@ Namespace ContentCenterSizeifier
         Private thisAssembly As Assembly = Assembly.GetExecutingAssembly()
         Private thisAssemblyPath As String = String.Empty
         Public Shared attribute As GuidAttribute = Nothing
-        Public Shared myiPropsForm As SizeifierForm = Nothing
+        Public Shared SizeifierForm As SizeifierForm = Nothing
         Public Property InventorAppQuitting As Boolean = False
 
         'Private WithEvents m_sampleButton As ButtonDefinition
@@ -45,25 +45,25 @@ Namespace ContentCenterSizeifier
             attribute = DirectCast(thisAssembly.GetCustomAttributes(GetType(GuidAttribute), True)(0), GuidAttribute)
 
             AddinGlobal.GetAddinClassId(Me.GetType())
-                'store our Addin path.
-                thisAssemblyPath = IO.Path.GetDirectoryName(thisAssembly.Location)
-                ' Connect to the user-interface events to handle a ribbon reset.
-                m_uiEvents = AddinGlobal.InventorApp.UserInterfaceManager.UserInterfaceEvents
-                'Connect to the Application Events to handle document opening/switching for our iProperties dockable Window.
-                m_AppEvents = AddinGlobal.InventorApp.ApplicationEvents
-                m_UserInputEvents = AddinGlobal.InventorApp.CommandManager.UserInputEvents
-                m_StyleEvents = AddinGlobal.InventorApp.StyleEvents
+            'store our Addin path.
+            thisAssemblyPath = IO.Path.GetDirectoryName(thisAssembly.Location)
+            ' Connect to the user-interface events to handle a ribbon reset.
+            m_uiEvents = AddinGlobal.InventorApp.UserInterfaceManager.UserInterfaceEvents
+            'Connect to the Application Events to handle document opening/switching for our iProperties dockable Window.
+            m_AppEvents = AddinGlobal.InventorApp.ApplicationEvents
+            m_UserInputEvents = AddinGlobal.InventorApp.CommandManager.UserInputEvents
+            m_StyleEvents = AddinGlobal.InventorApp.StyleEvents
 
-                AddHandler m_AppEvents.OnQuit, AddressOf Me.m_ApplicationEvents_OnQuit
+            AddHandler m_AppEvents.OnQuit, AddressOf Me.m_ApplicationEvents_OnQuit
             AddHandler m_AppEvents.OnActivateDocument, AddressOf Me.m_applicationEvents_OnActivateDocument
             AddHandler m_UserInputEvents.OnActivateCommand, AddressOf Me.m_UserInputEvents_OnActivateCommand
 
-                'you can add extra handlers like this - if you uncomment the next line Visual Studio will prompt you to create the method:
-                'AddHandler m_AssemblyEvents.OnNewOccurrence, AddressOf Me.m_AssemblyEvents_NewOcccurrence
-                If Not AddinGlobal.InventorApp.ActiveDocument Is Nothing Then
-                    m_DocEvents = AddinGlobal.InventorApp.ActiveDocument.DocumentEvents
-                    AddHandler m_DocEvents.OnChangeSelectSet, AddressOf Me.m_DocumentEvents_OnChangeSelectSet
-                End If
+            'you can add extra handlers like this - if you uncomment the next line Visual Studio will prompt you to create the method:
+            'AddHandler m_AssemblyEvents.OnNewOccurrence, AddressOf Me.m_AssemblyEvents_NewOcccurrence
+            If Not AddinGlobal.InventorApp.ActiveDocument Is Nothing Then
+                m_DocEvents = AddinGlobal.InventorApp.ActiveDocument.DocumentEvents
+                AddHandler m_DocEvents.OnChangeSelectSet, AddressOf Me.m_DocumentEvents_OnChangeSelectSet
+            End If
 
             ' TODO: Add button definitions.
 
@@ -85,7 +85,7 @@ Namespace ContentCenterSizeifier
                 AddToUserInterface(button2)
                 'add our userform to a new DockableWindow
                 Dim SizeifierWindow As DockableWindow = Nothing
-                myiPropsForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, SizeifierWindow)
+                SizeifierForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, SizeifierWindow)
                 Window = SizeifierWindow
 
             End If
@@ -145,11 +145,20 @@ Namespace ContentCenterSizeifier
                                     If TypeOf compOcc.Definition.Document Is PartDocument Then
                                         Dim oDoc As Document = compOcc.Definition.Document
                                         If oDoc.FullFileName.Contains("Content Center") Then
-                                            myiPropsForm.tbCurrentPart.Text = iProperties.GetorSetStandardiProperty(oDoc, PropertiesForDesignTrackingPropertiesEnum.kDescriptionDesignTrackingProperties, "", "")
-                                        End If
-                                    End If
-                                End If
+                                            SizeifierForm.tbCurrentPart.Text = iProperties.GetorSetStandardiProperty(oDoc, PropertiesForDesignTrackingPropertiesEnum.kDescriptionDesignTrackingProperties, "", "")
+                                            SizeifierForm.ListSizes = Nothing
 
+                                        Else
+                                            SizeifierForm.tbCurrentPart.Text = String.Empty
+                                        End If
+                                    Else
+                                        SizeifierForm.tbCurrentPart.Text = String.Empty
+                                    End If
+                                Else
+                                    SizeifierForm.tbCurrentPart.Text = String.Empty
+                                End If
+                            Else
+                                SizeifierForm.tbCurrentPart.Text = String.Empty
                             End If
 
                         End If
@@ -213,7 +222,7 @@ Namespace ContentCenterSizeifier
             m_StyleEvents = Nothing
 
             thisAssembly = Nothing
-            myiPropsForm = Nothing
+            SizeifierForm = Nothing
 
             If AddinGlobal.RibbonPanel IsNot Nothing Then
                 Marshal.FinalReleaseComObject(AddinGlobal.RibbonPanel)

@@ -39,7 +39,7 @@ Public Class SizeifierForm
 
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListSizes.SelectedIndexChanged
 
     End Sub
 

@@ -26,7 +26,7 @@ Partial Class SizeifierForm
         Me.lbAddinName = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ListSizes = New System.Windows.Forms.ListBox()
         Me.tbCurrentPart = New System.Windows.Forms.TextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,13 +50,13 @@ Partial Class SizeifierForm
         '
         Me.ToolTip1.AutomaticDelay = 250
         '
-        'ListBox1
+        'ListSizes
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(12, 49)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(261, 303)
-        Me.ListBox1.TabIndex = 316
+        Me.ListSizes.FormattingEnabled = True
+        Me.ListSizes.Location = New System.Drawing.Point(12, 49)
+        Me.ListSizes.Name = "ListSizes"
+        Me.ListSizes.Size = New System.Drawing.Size(261, 303)
+        Me.ListSizes.TabIndex = 316
         '
         'tbCurrentPart
         '
@@ -73,7 +73,7 @@ Partial Class SizeifierForm
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(285, 361)
         Me.Controls.Add(Me.tbCurrentPart)
-        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.ListSizes)
         Me.Controls.Add(Me.lbAddinName)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SizeifierForm"
@@ -87,6 +87,6 @@ Partial Class SizeifierForm
     Friend WithEvents lbAddinName As Windows.Forms.Label
     Friend WithEvents ErrorProvider1 As Windows.Forms.ErrorProvider
     Friend WithEvents ToolTip1 As Windows.Forms.ToolTip
-    Friend WithEvents ListBox1 As Windows.Forms.ListBox
+    Friend WithEvents ListSizes As Windows.Forms.ListBox
     Friend WithEvents tbCurrentPart As Windows.Forms.TextBox
 End Class
