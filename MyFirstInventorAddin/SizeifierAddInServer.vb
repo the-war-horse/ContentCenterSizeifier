@@ -55,8 +55,8 @@ Namespace ContentCenterSizeifier
                 m_StyleEvents = AddinGlobal.InventorApp.StyleEvents
 
                 AddHandler m_AppEvents.OnQuit, AddressOf Me.m_ApplicationEvents_OnQuit
-
-                AddHandler m_UserInputEvents.OnActivateCommand, AddressOf Me.m_UserInputEvents_OnActivateCommand
+            AddHandler m_AppEvents.OnActivateDocument, AddressOf Me.m_applicationEvents_OnActivateDocument
+            AddHandler m_UserInputEvents.OnActivateCommand, AddressOf Me.m_UserInputEvents_OnActivateCommand
 
                 'you can add extra handlers like this - if you uncomment the next line Visual Studio will prompt you to create the method:
                 'AddHandler m_AssemblyEvents.OnNewOccurrence, AddressOf Me.m_AssemblyEvents_NewOcccurrence
@@ -88,6 +88,13 @@ Namespace ContentCenterSizeifier
                 myiPropsForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, SizeifierWindow)
                 Window = SizeifierWindow
 
+            End If
+        End Sub
+
+        Private Sub m_applicationEvents_OnActivateDocument(DocumentObject As _Document, BeforeOrAfter As EventTimingEnum, Context As NameValueMap, ByRef HandlingCode As HandlingCodeEnum)
+            If BeforeOrAfter = EventTimingEnum.kAfter Then
+                m_DocEvents = DocumentObject.DocumentEvents
+                AddHandler m_DocEvents.OnChangeSelectSet, AddressOf Me.m_DocumentEvents_OnChangeSelectSet
             End If
         End Sub
 
