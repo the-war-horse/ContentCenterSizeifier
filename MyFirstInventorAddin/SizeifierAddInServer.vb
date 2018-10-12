@@ -150,11 +150,23 @@ Namespace ContentCenterSizeifier
                                             SizeifierForm.tbCurrentPart.Text = iProperties.GetorSetStandardiProperty(oDoc, PropertiesForDesignTrackingPropertiesEnum.kDescriptionDesignTrackingProperties, "", "")
                                             Dim family As ContentFamily = Nothing
                                             Dim memberRow As ContentTableRow = Nothing
+                                            Dim sizeCol As ContentTableColumn = Nothing
+                                            Dim materialCol As ContentTableColumn = Nothing
                                             Dim memberRowStr As String = String.Empty
-                                            GetContentCentreProperties(thisPartDoc, family, memberRow, memberRowStr)
-                                            memberRow = (From row As ContentTableRow In family.TableRows
-                                                         Where row.InternalName = memberRowStr
-                                                         Select row).FirstOrDefault()
+
+                                            GetContentCentreProperties(thisPartDoc, family, memberRow, sizeCol, materialCol)
+                                            'memberRow = (From row As ContentTableRow In family.TableRows
+                                            '             Where row.InternalName = memberRowStr
+                                            '             Select row).FirstOrDefault()
+                                            SizeifierForm.cbbLength.DataSource = (From sizeRows As ContentTableRow In family.TableRows
+                                                                                  Let size As String = sizeRows.GetCellValue(sizeCol)
+                                                                                  Select size).ToList()
+                                            SizeifierForm.cbbMaterial.DataSource = (From materialRow As ContentTableRow In family.TableRows
+                                                                                    Let material As String = materialRow.GetCellValue(materialCol)
+                                                                                    Select material).ToList()
+                                            'If Not memberRowStr Is String.Empty Then
+                                            '    SizeifierForm.cbbDesignation.Text = memberRowStr
+                                            'End If
                                             SizeifierForm.ListSizes = Nothing
 
                                         Else
@@ -185,12 +197,22 @@ Namespace ContentCenterSizeifier
         ''' <param name="partDoc"></param>
         ''' <param name="ccFamily"></param>
         ''' <param name="ccMemberRow"></param>
-        Private Sub GetContentCentreProperties(ByVal partDoc As PartDocument, ByRef ccFamily As ContentFamily, ByRef ccMemberRow As ContentTableRow, ByRef ccMemberRowStr As String)
+        Private Sub GetContentCentreProperties(ByVal partDoc As PartDocument,
+                                               ByRef ccFamily As ContentFamily,
+                                               ByRef ccMemberRow As ContentTableRow,
+                                               ByRef ccSizeCol As ContentTableColumn,
+                                               ByRef ccMaterialCol As ContentTableColumn)
             Dim ContentCentre As ContentCenter = AddinGlobal.InventorApp.ContentCenter
             Dim partCompDef As PartComponentDefinition = partDoc.ComponentDefinition
+            Dim ccMemberRowStr As String = String.Empty
             If partCompDef.IsContentMember Then
                 ccFamily = ContentCentre.GetContentObject("v3#" + iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kFamilyIdContentLibrary) + "#")
                 ccMemberRowStr = iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kMemberIdContentLibrary)
+                ccMemberRow = (From row As ContentTableRow In ccFamily.TableRows
+                               Where row.InternalName = ccMemberRowStr
+                               Select row).FirstOrDefault()
+                ccSizeCol = ccFamily.TableColumns("SIZE")
+                ccMaterialCol = ccFamily.TableColumns("MATERIAL_ALIAS")
                 'ccMemberRow = ContentCentre.GetContentObject("v3#" + iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kMemberIdContentLibrary))
             Else
                 Throw New NotImplementedException("We haven't designed this tool for working with custom Content Centre parts yet, sorry!")

@@ -28,6 +28,13 @@ Partial Class SizeifierForm
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ListSizes = New System.Windows.Forms.ListBox()
         Me.tbCurrentPart = New System.Windows.Forms.TextBox()
+        Me.cbbDesignation = New System.Windows.Forms.ComboBox()
+        Me.cbMaterial = New System.Windows.Forms.CheckBox()
+        Me.lblDesignation = New System.Windows.Forms.Label()
+        Me.lblLength = New System.Windows.Forms.Label()
+        Me.cbbLength = New System.Windows.Forms.ComboBox()
+        Me.cbbMaterial = New System.Windows.Forms.ComboBox()
+        Me.lblMaterial = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,18 +59,100 @@ Partial Class SizeifierForm
         '
         'ListSizes
         '
+        Me.ListSizes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListSizes.FormattingEnabled = True
-        Me.ListSizes.Location = New System.Drawing.Point(12, 49)
+        Me.ListSizes.Location = New System.Drawing.Point(15, 145)
         Me.ListSizes.Name = "ListSizes"
-        Me.ListSizes.Size = New System.Drawing.Size(261, 303)
+        Me.ListSizes.Size = New System.Drawing.Size(226, 277)
         Me.ListSizes.TabIndex = 316
         '
         'tbCurrentPart
         '
+        Me.tbCurrentPart.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbCurrentPart.Location = New System.Drawing.Point(12, 17)
         Me.tbCurrentPart.Name = "tbCurrentPart"
-        Me.tbCurrentPart.Size = New System.Drawing.Size(260, 20)
+        Me.tbCurrentPart.Size = New System.Drawing.Size(229, 20)
         Me.tbCurrentPart.TabIndex = 317
+        Me.tbCurrentPart.Text = "Current Designation or something"
+        '
+        'cbbDesignation
+        '
+        Me.cbbDesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbbDesignation.FormattingEnabled = True
+        Me.cbbDesignation.Location = New System.Drawing.Point(84, 43)
+        Me.cbbDesignation.Name = "cbbDesignation"
+        Me.cbbDesignation.Size = New System.Drawing.Size(157, 21)
+        Me.cbbDesignation.TabIndex = 318
+        '
+        'cbMaterial
+        '
+        Me.cbMaterial.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbMaterial.AutoSize = True
+        Me.cbMaterial.Location = New System.Drawing.Point(15, 124)
+        Me.cbMaterial.Name = "cbMaterial"
+        Me.cbMaterial.Size = New System.Drawing.Size(153, 17)
+        Me.cbMaterial.TabIndex = 319
+        Me.cbMaterial.Text = "Use Material as key Option"
+        Me.cbMaterial.UseVisualStyleBackColor = True
+        '
+        'lblDesignation
+        '
+        Me.lblDesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDesignation.AutoSize = True
+        Me.lblDesignation.Location = New System.Drawing.Point(12, 46)
+        Me.lblDesignation.Name = "lblDesignation"
+        Me.lblDesignation.Size = New System.Drawing.Size(66, 13)
+        Me.lblDesignation.TabIndex = 320
+        Me.lblDesignation.Text = "Designation:"
+        '
+        'lblLength
+        '
+        Me.lblLength.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblLength.AutoSize = True
+        Me.lblLength.Location = New System.Drawing.Point(12, 73)
+        Me.lblLength.Name = "lblLength"
+        Me.lblLength.Size = New System.Drawing.Size(43, 13)
+        Me.lblLength.TabIndex = 321
+        Me.lblLength.Text = "Length:"
+        '
+        'cbbLength
+        '
+        Me.cbbLength.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbbLength.FormattingEnabled = True
+        Me.cbbLength.Location = New System.Drawing.Point(84, 70)
+        Me.cbbLength.Name = "cbbLength"
+        Me.cbbLength.Size = New System.Drawing.Size(157, 21)
+        Me.cbbLength.TabIndex = 322
+        '
+        'cbbMaterial
+        '
+        Me.cbbMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbbMaterial.FormattingEnabled = True
+        Me.cbbMaterial.Location = New System.Drawing.Point(84, 97)
+        Me.cbbMaterial.Name = "cbbMaterial"
+        Me.cbbMaterial.Size = New System.Drawing.Size(157, 21)
+        Me.cbbMaterial.TabIndex = 323
+        '
+        'lblMaterial
+        '
+        Me.lblMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblMaterial.AutoSize = True
+        Me.lblMaterial.Location = New System.Drawing.Point(12, 100)
+        Me.lblMaterial.Name = "lblMaterial"
+        Me.lblMaterial.Size = New System.Drawing.Size(47, 13)
+        Me.lblMaterial.TabIndex = 324
+        Me.lblMaterial.Text = "Material:"
         '
         'SizeifierForm
         '
@@ -71,7 +160,14 @@ Partial Class SizeifierForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(285, 361)
+        Me.ClientSize = New System.Drawing.Size(250, 450)
+        Me.Controls.Add(Me.lblMaterial)
+        Me.Controls.Add(Me.cbbMaterial)
+        Me.Controls.Add(Me.cbbLength)
+        Me.Controls.Add(Me.lblLength)
+        Me.Controls.Add(Me.lblDesignation)
+        Me.Controls.Add(Me.cbMaterial)
+        Me.Controls.Add(Me.cbbDesignation)
         Me.Controls.Add(Me.tbCurrentPart)
         Me.Controls.Add(Me.ListSizes)
         Me.Controls.Add(Me.lbAddinName)
@@ -89,4 +185,11 @@ Partial Class SizeifierForm
     Friend WithEvents ToolTip1 As Windows.Forms.ToolTip
     Friend WithEvents ListSizes As Windows.Forms.ListBox
     Friend WithEvents tbCurrentPart As Windows.Forms.TextBox
+    Friend WithEvents lblMaterial As Windows.Forms.Label
+    Friend WithEvents cbbMaterial As Windows.Forms.ComboBox
+    Friend WithEvents cbbLength As Windows.Forms.ComboBox
+    Friend WithEvents lblLength As Windows.Forms.Label
+    Friend WithEvents lblDesignation As Windows.Forms.Label
+    Friend WithEvents cbMaterial As Windows.Forms.CheckBox
+    Friend WithEvents cbbDesignation As Windows.Forms.ComboBox
 End Class
