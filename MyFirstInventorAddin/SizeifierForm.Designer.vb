@@ -35,6 +35,8 @@ Partial Class SizeifierForm
         Me.cbbLength = New System.Windows.Forms.ComboBox()
         Me.cbbMaterial = New System.Windows.Forms.ComboBox()
         Me.lblMaterial = New System.Windows.Forms.Label()
+        Me.cbbDiameter = New System.Windows.Forms.ComboBox()
+        Me.lblDiameter = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -63,9 +65,9 @@ Partial Class SizeifierForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListSizes.FormattingEnabled = True
-        Me.ListSizes.Location = New System.Drawing.Point(15, 145)
+        Me.ListSizes.Location = New System.Drawing.Point(15, 171)
         Me.ListSizes.Name = "ListSizes"
-        Me.ListSizes.Size = New System.Drawing.Size(226, 277)
+        Me.ListSizes.Size = New System.Drawing.Size(226, 251)
         Me.ListSizes.TabIndex = 316
         '
         'tbCurrentPart
@@ -94,11 +96,11 @@ Partial Class SizeifierForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbMaterial.AutoSize = True
-        Me.cbMaterial.Location = New System.Drawing.Point(15, 124)
+        Me.cbMaterial.Location = New System.Drawing.Point(15, 148)
         Me.cbMaterial.Name = "cbMaterial"
-        Me.cbMaterial.Size = New System.Drawing.Size(153, 17)
+        Me.cbMaterial.Size = New System.Drawing.Size(130, 17)
         Me.cbMaterial.TabIndex = 319
-        Me.cbMaterial.Text = "Use Material as key Option"
+        Me.cbMaterial.Text = "Use Material as ""Key"""
         Me.cbMaterial.UseVisualStyleBackColor = True
         '
         'lblDesignation
@@ -138,7 +140,7 @@ Partial Class SizeifierForm
         Me.cbbMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbbMaterial.FormattingEnabled = True
-        Me.cbbMaterial.Location = New System.Drawing.Point(84, 97)
+        Me.cbbMaterial.Location = New System.Drawing.Point(84, 124)
         Me.cbbMaterial.Name = "cbbMaterial"
         Me.cbbMaterial.Size = New System.Drawing.Size(157, 21)
         Me.cbbMaterial.TabIndex = 323
@@ -148,11 +150,30 @@ Partial Class SizeifierForm
         Me.lblMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblMaterial.AutoSize = True
-        Me.lblMaterial.Location = New System.Drawing.Point(12, 100)
+        Me.lblMaterial.Location = New System.Drawing.Point(12, 127)
         Me.lblMaterial.Name = "lblMaterial"
         Me.lblMaterial.Size = New System.Drawing.Size(47, 13)
         Me.lblMaterial.TabIndex = 324
         Me.lblMaterial.Text = "Material:"
+        '
+        'cbbDiameter
+        '
+        Me.cbbDiameter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbbDiameter.FormattingEnabled = True
+        Me.cbbDiameter.Location = New System.Drawing.Point(84, 97)
+        Me.cbbDiameter.Name = "cbbDiameter"
+        Me.cbbDiameter.Size = New System.Drawing.Size(157, 21)
+        Me.cbbDiameter.TabIndex = 325
+        '
+        'lblDiameter
+        '
+        Me.lblDiameter.AutoSize = True
+        Me.lblDiameter.Location = New System.Drawing.Point(12, 100)
+        Me.lblDiameter.Name = "lblDiameter"
+        Me.lblDiameter.Size = New System.Drawing.Size(52, 13)
+        Me.lblDiameter.TabIndex = 326
+        Me.lblDiameter.Text = "Diameter:"
         '
         'SizeifierForm
         '
@@ -161,6 +182,8 @@ Partial Class SizeifierForm
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(250, 450)
+        Me.Controls.Add(Me.lblDiameter)
+        Me.Controls.Add(Me.cbbDiameter)
         Me.Controls.Add(Me.lblMaterial)
         Me.Controls.Add(Me.cbbMaterial)
         Me.Controls.Add(Me.cbbLength)
@@ -192,4 +215,6 @@ Partial Class SizeifierForm
     Friend WithEvents lblDesignation As Windows.Forms.Label
     Friend WithEvents cbMaterial As Windows.Forms.CheckBox
     Friend WithEvents cbbDesignation As Windows.Forms.ComboBox
+    Friend WithEvents lblDiameter As Windows.Forms.Label
+    Friend WithEvents cbbDiameter As Windows.Forms.ComboBox
 End Class

@@ -160,10 +160,15 @@ Namespace ContentCenterSizeifier
                                             '             Select row).FirstOrDefault()
                                             SizeifierForm.cbbLength.DataSource = (From sizeRows As ContentTableRow In family.TableRows
                                                                                   Let size As String = sizeRows.GetCellValue(sizeCol)
-                                                                                  Select size).ToList()
+                                                                                  Select size).Distinct.ToList()
                                             SizeifierForm.cbbMaterial.DataSource = (From materialRow As ContentTableRow In family.TableRows
                                                                                     Let material As String = materialRow.GetCellValue(materialCol)
-                                                                                    Select material).ToList()
+                                                                                    Select material).Distinct.ToList()
+
+                                            Dim diaCol As ContentTableColumn = family.TableColumns("SIZE_SEL")
+                                            SizeifierForm.cbbDiameter.DataSource = (From diamRow As ContentTableRow In family.TableRows
+                                                                                    Let diam As String = diamRow.GetCellValue(diaCol)
+                                                                                    Select diam).Distinct.ToList()
                                             'If Not memberRowStr Is String.Empty Then
                                             '    SizeifierForm.cbbDesignation.Text = memberRowStr
                                             'End If
@@ -211,7 +216,7 @@ Namespace ContentCenterSizeifier
                 ccMemberRow = (From row As ContentTableRow In ccFamily.TableRows
                                Where row.InternalName = ccMemberRowStr
                                Select row).FirstOrDefault()
-                ccSizeCol = ccFamily.TableColumns("SIZE")
+                ccSizeCol = ccFamily.TableColumns("NLG") '("SIZE")
                 ccMaterialCol = ccFamily.TableColumns("MATERIAL_ALIAS")
                 'ccMemberRow = ContentCentre.GetContentObject("v3#" + iProperties.GetorSetStandardiProperty(partDoc, PropertiesForContentLibraryEnum.kMemberIdContentLibrary))
             Else
