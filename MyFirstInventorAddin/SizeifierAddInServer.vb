@@ -177,26 +177,29 @@ Namespace ContentCenterSizeifier
                                             Dim materialCol As ContentTableColumn = Nothing
                                             Dim memberRowStr As String = String.Empty
 
-                                            GetContentCentreProperties(thisPartDoc, family, memberRow, sizeCol, materialCol)
+                                            GetContentCentreProperties(thisPartDoc, AddinGlobal.family,
+                                                                       AddinGlobal.memberRow,
+                                                                       AddinGlobal.sizeCol,
+                                                                       AddinGlobal.materialCol)
                                             'memberRow = (From row As ContentTableRow In family.TableRows
                                             '             Where row.InternalName = memberRowStr
                                             '             Select row).FirstOrDefault()
-                                            SizeifierForm.cbbDesignation.DataSource = (From desigRow As ContentTableRow In family.TableRows
+                                            SizeifierForm.cbbDesignation.DataSource = (From desigRow As ContentTableRow In AddinGlobal.family.TableRows
                                                                                        Let designation As String = desigRow.GetCellValue("DESIGNATION")
                                                                                        Select designation).Distinct.ToList()
-                                            SizeifierForm.cbbLength.DataSource = (From sizeRows As ContentTableRow In family.TableRows
-                                                                                  Let size As String = sizeRows.GetCellValue(sizeCol)
+                                            SizeifierForm.cbbLength.DataSource = (From sizeRows As ContentTableRow In AddinGlobal.family.TableRows
+                                                                                  Let size As String = sizeRows.GetCellValue(AddinGlobal.sizeCol)
                                                                                   Select size).Distinct.ToList()
-                                            SizeifierForm.cbbMaterial.DataSource = (From materialRow As ContentTableRow In family.TableRows
-                                                                                    Let material As String = materialRow.GetCellValue(materialCol)
+                                            SizeifierForm.cbbMaterial.DataSource = (From materialRow As ContentTableRow In AddinGlobal.family.TableRows
+                                                                                    Let material As String = materialRow.GetCellValue(AddinGlobal.materialCol)
                                                                                     Select material).Distinct.ToList()
 
-                                            Dim diaCol As ContentTableColumn = family.TableColumns("SIZE_SEL")
-                                            SizeifierForm.cbbDiameter.DataSource = (From diamRow As ContentTableRow In family.TableRows
-                                                                                    Let diam As String = diamRow.GetCellValue(diaCol)
+                                            AddinGlobal.diaCol = family.TableColumns("SIZE_SEL")
+                                            SizeifierForm.cbbDiameter.DataSource = (From diamRow As ContentTableRow In AddinGlobal.family.TableRows
+                                                                                    Let diam As String = diamRow.GetCellValue(AddinGlobal.diaCol)
                                                                                     Select diam).Distinct.ToList()
 
-                                            SizeifierForm.ListSizes.DataSource = (From desigRow As ContentTableRow In family.TableRows
+                                            SizeifierForm.ListSizes.DataSource = (From desigRow As ContentTableRow In AddinGlobal.family.TableRows
                                                                                   Let designation As String = desigRow.GetCellValue("DESIGNATION")
                                                                                   Select designation).Distinct.ToList()
                                             'If Not memberRowStr Is String.Empty Then

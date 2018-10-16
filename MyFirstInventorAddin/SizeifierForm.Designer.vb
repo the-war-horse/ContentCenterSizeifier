@@ -85,7 +85,7 @@ Partial Class SizeifierForm
         Me.cbbDesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbbDesignation.FormattingEnabled = True
-        Me.cbbDesignation.Location = New System.Drawing.Point(84, 43)
+        Me.cbbDesignation.Location = New System.Drawing.Point(84, 124)
         Me.cbbDesignation.Name = "cbbDesignation"
         Me.cbbDesignation.Size = New System.Drawing.Size(157, 21)
         Me.cbbDesignation.TabIndex = 318
@@ -108,7 +108,7 @@ Partial Class SizeifierForm
         Me.lblDesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDesignation.AutoSize = True
-        Me.lblDesignation.Location = New System.Drawing.Point(12, 46)
+        Me.lblDesignation.Location = New System.Drawing.Point(12, 127)
         Me.lblDesignation.Name = "lblDesignation"
         Me.lblDesignation.Size = New System.Drawing.Size(66, 13)
         Me.lblDesignation.TabIndex = 320
@@ -119,7 +119,7 @@ Partial Class SizeifierForm
         Me.lblLength.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblLength.AutoSize = True
-        Me.lblLength.Location = New System.Drawing.Point(12, 73)
+        Me.lblLength.Location = New System.Drawing.Point(12, 46)
         Me.lblLength.Name = "lblLength"
         Me.lblLength.Size = New System.Drawing.Size(43, 13)
         Me.lblLength.TabIndex = 321
@@ -130,7 +130,7 @@ Partial Class SizeifierForm
         Me.cbbLength.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbbLength.FormattingEnabled = True
-        Me.cbbLength.Location = New System.Drawing.Point(84, 70)
+        Me.cbbLength.Location = New System.Drawing.Point(84, 43)
         Me.cbbLength.Name = "cbbLength"
         Me.cbbLength.Size = New System.Drawing.Size(157, 21)
         Me.cbbLength.TabIndex = 322
@@ -140,7 +140,7 @@ Partial Class SizeifierForm
         Me.cbbMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbbMaterial.FormattingEnabled = True
-        Me.cbbMaterial.Location = New System.Drawing.Point(84, 124)
+        Me.cbbMaterial.Location = New System.Drawing.Point(84, 97)
         Me.cbbMaterial.Name = "cbbMaterial"
         Me.cbbMaterial.Size = New System.Drawing.Size(157, 21)
         Me.cbbMaterial.TabIndex = 323
@@ -150,7 +150,7 @@ Partial Class SizeifierForm
         Me.lblMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblMaterial.AutoSize = True
-        Me.lblMaterial.Location = New System.Drawing.Point(12, 127)
+        Me.lblMaterial.Location = New System.Drawing.Point(12, 100)
         Me.lblMaterial.Name = "lblMaterial"
         Me.lblMaterial.Size = New System.Drawing.Size(47, 13)
         Me.lblMaterial.TabIndex = 324
@@ -161,7 +161,7 @@ Partial Class SizeifierForm
         Me.cbbDiameter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbbDiameter.FormattingEnabled = True
-        Me.cbbDiameter.Location = New System.Drawing.Point(84, 97)
+        Me.cbbDiameter.Location = New System.Drawing.Point(84, 70)
         Me.cbbDiameter.Name = "cbbDiameter"
         Me.cbbDiameter.Size = New System.Drawing.Size(157, 21)
         Me.cbbDiameter.TabIndex = 325
@@ -169,7 +169,7 @@ Partial Class SizeifierForm
         'lblDiameter
         '
         Me.lblDiameter.AutoSize = True
-        Me.lblDiameter.Location = New System.Drawing.Point(12, 100)
+        Me.lblDiameter.Location = New System.Drawing.Point(12, 73)
         Me.lblDiameter.Name = "lblDiameter"
         Me.lblDiameter.Size = New System.Drawing.Size(52, 13)
         Me.lblDiameter.TabIndex = 326

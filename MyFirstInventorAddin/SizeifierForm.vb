@@ -2,6 +2,7 @@
 Imports Inventor
 Imports ContentCenterSizeifier.ContentCenterSizeifier
 Imports log4net
+Imports System.Linq
 
 Public Class SizeifierForm
     'Inherits Form
@@ -43,7 +44,23 @@ Public Class SizeifierForm
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListSizes.SelectedIndexChanged
+        Throw New NotImplementedException
+    End Sub
 
+    Private Sub cbbLength_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbLength.SelectedIndexChanged
+
+        Me.ListSizes.DataSource = (From desigRow As ContentTableRow In AddinGlobal.family.TableRows
+                                   Let designation As String = desigRow.GetCellValue("DESIGNATION")
+                                   Where designation.EndsWith(cbbLength.SelectedItem.ToString)
+                                   Select designation).Distinct.ToList()
+    End Sub
+
+    Private Sub cbbDiameter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbDiameter.SelectedIndexChanged
+        Throw New NotImplementedException
+    End Sub
+
+    Private Sub cbbMaterial_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMaterial.SelectedIndexChanged
+        Throw New NotImplementedException
     End Sub
 
     'Public Shared Function GetFileName(path As String) As String

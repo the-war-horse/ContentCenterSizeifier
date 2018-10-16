@@ -15,6 +15,16 @@ Public Class AddinGlobal
 
     Public Shared DockableList As List(Of DockableWindow) = New List(Of DockableWindow)()
 
+    Public Shared family As ContentFamily = Nothing
+
+    Public Shared memberRow As ContentTableRow = Nothing
+
+    Public Shared sizeCol As ContentTableColumn = Nothing
+
+    Public Shared materialCol As ContentTableColumn = Nothing
+
+    Public Shared diaCol As ContentTableColumn = Nothing
+
     'Not implemented here
     'Public Shared PluginList As List(Of IVPlugin) = New List(Of IVPlugin)()
 
