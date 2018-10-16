@@ -44,7 +44,7 @@ Public Class SizeifierForm
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListSizes.SelectedIndexChanged
-        Throw New NotImplementedException
+        'Throw New NotImplementedException
     End Sub
 
     Private Sub cbbLength_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbLength.SelectedIndexChanged
@@ -56,11 +56,11 @@ Public Class SizeifierForm
     End Sub
 
     Private Sub cbbDiameter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbDiameter.SelectedIndexChanged
-        Throw New NotImplementedException
+        'Throw New NotImplementedException
     End Sub
 
     Private Sub cbbMaterial_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMaterial.SelectedIndexChanged
-        Throw New NotImplementedException
+        'Throw New NotImplementedException
     End Sub
 
     'Public Shared Function GetFileName(path As String) As String

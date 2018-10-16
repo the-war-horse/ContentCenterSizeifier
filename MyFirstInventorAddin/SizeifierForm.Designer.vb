@@ -37,6 +37,7 @@ Partial Class SizeifierForm
         Me.lblMaterial = New System.Windows.Forms.Label()
         Me.cbbDiameter = New System.Windows.Forms.ComboBox()
         Me.lblDiameter = New System.Windows.Forms.Label()
+        Me.btnSwap = New System.Windows.Forms.Button()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -65,9 +66,9 @@ Partial Class SizeifierForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListSizes.FormattingEnabled = True
-        Me.ListSizes.Location = New System.Drawing.Point(15, 171)
+        Me.ListSizes.Location = New System.Drawing.Point(15, 184)
         Me.ListSizes.Name = "ListSizes"
-        Me.ListSizes.Size = New System.Drawing.Size(226, 251)
+        Me.ListSizes.Size = New System.Drawing.Size(226, 238)
         Me.ListSizes.TabIndex = 316
         '
         'tbCurrentPart
@@ -92,15 +93,14 @@ Partial Class SizeifierForm
         '
         'cbMaterial
         '
-        Me.cbMaterial.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.cbMaterial.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbMaterial.AutoSize = True
-        Me.cbMaterial.Location = New System.Drawing.Point(15, 148)
+        Me.cbMaterial.Location = New System.Drawing.Point(15, 155)
         Me.cbMaterial.Name = "cbMaterial"
-        Me.cbMaterial.Size = New System.Drawing.Size(130, 17)
+        Me.cbMaterial.Size = New System.Drawing.Size(108, 17)
         Me.cbMaterial.TabIndex = 319
-        Me.cbMaterial.Text = "Use Material as ""Key"""
+        Me.cbMaterial.Text = "Material as ""Key"""
         Me.cbMaterial.UseVisualStyleBackColor = True
         '
         'lblDesignation
@@ -175,12 +175,24 @@ Partial Class SizeifierForm
         Me.lblDiameter.TabIndex = 326
         Me.lblDiameter.Text = "Diameter:"
         '
+        'btnSwap
+        '
+        Me.btnSwap.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSwap.Location = New System.Drawing.Point(129, 151)
+        Me.btnSwap.Name = "btnSwap"
+        Me.btnSwap.Size = New System.Drawing.Size(112, 23)
+        Me.btnSwap.TabIndex = 327
+        Me.btnSwap.Text = "Swap with Selected"
+        Me.btnSwap.UseVisualStyleBackColor = True
+        '
         'SizeifierForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(250, 450)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnSwap)
         Me.Controls.Add(Me.lblDiameter)
         Me.Controls.Add(Me.cbbDiameter)
         Me.Controls.Add(Me.lblMaterial)
@@ -218,4 +230,5 @@ Partial Class SizeifierForm
     Friend WithEvents cbbDesignation As Windows.Forms.ComboBox
     Friend WithEvents lblDiameter As Windows.Forms.Label
     Friend WithEvents cbbDiameter As Windows.Forms.ComboBox
+    Friend WithEvents btnSwap As Windows.Forms.Button
 End Class
