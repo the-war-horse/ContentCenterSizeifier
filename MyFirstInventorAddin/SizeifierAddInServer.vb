@@ -181,6 +181,9 @@ Namespace ContentCenterSizeifier
                                             'memberRow = (From row As ContentTableRow In family.TableRows
                                             '             Where row.InternalName = memberRowStr
                                             '             Select row).FirstOrDefault()
+                                            SizeifierForm.cbbDesignation.DataSource = (From desigRow As ContentTableRow In family.TableRows
+                                                                                       Let designation As String = desigRow.GetCellValue("DESIGNATION")
+                                                                                       Select designation).Distinct.ToList()
                                             SizeifierForm.cbbLength.DataSource = (From sizeRows As ContentTableRow In family.TableRows
                                                                                   Let size As String = sizeRows.GetCellValue(sizeCol)
                                                                                   Select size).Distinct.ToList()
@@ -192,6 +195,10 @@ Namespace ContentCenterSizeifier
                                             SizeifierForm.cbbDiameter.DataSource = (From diamRow As ContentTableRow In family.TableRows
                                                                                     Let diam As String = diamRow.GetCellValue(diaCol)
                                                                                     Select diam).Distinct.ToList()
+
+                                            SizeifierForm.ListSizes.DataSource = (From desigRow As ContentTableRow In family.TableRows
+                                                                                  Let designation As String = desigRow.GetCellValue("DESIGNATION")
+                                                                                  Select designation).Distinct.ToList()
                                             'If Not memberRowStr Is String.Empty Then
                                             '    SizeifierForm.cbbDesignation.Text = memberRowStr
                                             'End If
