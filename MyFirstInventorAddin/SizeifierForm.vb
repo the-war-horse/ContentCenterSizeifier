@@ -15,27 +15,30 @@ Public Class SizeifierForm
         InitializeComponent()
 
         'Me.KeyPreview = True
-        Me.inventorApp = inventorApp
-        Me.value = addinCLS
-        Me.DocaWindow = localWindow
-        Dim uiMgr As UserInterfaceManager = inventorApp.UserInterfaceManager
-            Dim addinName As String = lbAddinName.Text
-        Dim SizeifierWindow As DockableWindow = uiMgr.DockableWindows.Add(addinCLS, "ContentCenterSizeifierWindow", "Content Center Sizeifier " + addinName)
-        SizeifierWindow.AddChild(Me.Handle)
+        'Me.inventorApp = inventorApp
+        'Me.value = addinCLS
+        'Me.DocaWindow = localWindow
+        'Dim uiMgr As UserInterfaceManager = inventorApp.UserInterfaceManager
+        '    Dim addinName As String = lbAddinName.Text
+        'Dim SizeifierWindow As DockableWindow = uiMgr.DockableWindows.Add(addinCLS, "ContentCenterSizeifierWindow", "Content Center Sizeifier " + addinName)
+        'SizeifierWindow.AddChild(Me.Handle)
 
-        If Not SizeifierWindow.IsCustomized = True Then
-            'SizeifierWindow.DockingState = DockingStateEnum.kFloat
-            SizeifierWindow.DockingState = DockingStateEnum.kDockLastKnown
-        Else
-            SizeifierWindow.DockingState = DockingStateEnum.kFloat
-        End If
+        'If Not SizeifierWindow.IsCustomized = True Then
+        '    'SizeifierWindow.DockingState = DockingStateEnum.kFloat
+        '    SizeifierWindow.DockingState = DockingStateEnum.kDockLastKnown
+        'Else
+        '    SizeifierWindow.DockingState = DockingStateEnum.kFloat
+        'End If
+        'SizeifierWindow.ShowVisibilityCheckBox = True
+        'SizeifierWindow.ShowTitleBar = True
+        'SizeifierWindow.SetMinimumSize(100, 100)
+        'SizeifierWindow.Visible = True
+        'SizeifierWindow.DisabledDockingStates = DockingStateEnum.kDockTop + DockingStateEnum.kDockBottom
 
-        SizeifierWindow.DisabledDockingStates = DockingStateEnum.kDockTop + DockingStateEnum.kDockBottom
-
-        Me.Dock = DockStyle.Fill
-        Me.Visible = True
-        localWindow = SizeifierWindow
-        AddinGlobal.DockableList.Add(SizeifierWindow)
+        ''Me.Dock = DockStyle.Fill
+        'Me.Visible = True
+        'localWindow = SizeifierWindow
+        'AddinGlobal.DockableList.Add(SizeifierWindow)
 
     End Sub
 

@@ -179,9 +179,8 @@ Partial Class SizeifierForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(250, 450)
+        Me.ControlBox = False
         Me.Controls.Add(Me.lblDiameter)
         Me.Controls.Add(Me.cbbDiameter)
         Me.Controls.Add(Me.lblMaterial)
@@ -196,6 +195,8 @@ Partial Class SizeifierForm
         Me.Controls.Add(Me.lbAddinName)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SizeifierForm"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = "iPropertiesForm"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()

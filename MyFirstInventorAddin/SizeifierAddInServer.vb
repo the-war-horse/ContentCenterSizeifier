@@ -30,7 +30,7 @@ Namespace ContentCenterSizeifier
         Private thisAssembly As Assembly = Assembly.GetExecutingAssembly()
         Private thisAssemblyPath As String = String.Empty
         Public Shared attribute As GuidAttribute = Nothing
-        Public Shared SizeifierForm As SizeifierForm = Nothing
+        Public Shared SizeifierForm As SizeifierForm = Nothing 'System.Windows.Forms.Form = Nothing '
         Public Property InventorAppQuitting As Boolean = False
 
         'Private WithEvents m_sampleButton As ButtonDefinition
@@ -85,9 +85,32 @@ Namespace ContentCenterSizeifier
             If firstTime Then
                 AddToUserInterface(button2)
                 'add our userform to a new DockableWindow
-                Dim SizeifierWindow As DockableWindow = Nothing
+                'Dim SizeifierWindow As DockableWindow = Nothing
+                Dim uiMgr As UserInterfaceManager = AddinGlobal.InventorApp.UserInterfaceManager
+                Dim SizeifierWindow As DockableWindow = uiMgr.DockableWindows.Add(Guid.NewGuid().ToString(),
+                                                                                  "ContentCenterSizeifierWindow",
+                                                                                  "Content Center Sizeifier " + "v1.0.0")
                 SizeifierForm = New SizeifierForm(AddinGlobal.InventorApp, attribute.Value, SizeifierWindow)
-                Window = SizeifierWindow
+
+                SizeifierWindow.AddChild(SizeifierForm.Handle)
+
+                If Not SizeifierWindow.IsCustomized = True Then
+                    'SizeifierWindow.DockingState = DockingStateEnum.kFloat
+                    SizeifierWindow.DockingState = DockingStateEnum.kDockLastKnown
+                Else
+                    SizeifierWindow.DockingState = DockingStateEnum.kFloat
+                End If
+                SizeifierWindow.ShowVisibilityCheckBox = True
+                SizeifierWindow.ShowTitleBar = True
+                SizeifierWindow.SetMinimumSize(100, 100)
+                SizeifierWindow.Visible = True
+                SizeifierWindow.DisabledDockingStates = DockingStateEnum.kDockTop + DockingStateEnum.kDockBottom
+
+                'Me.Dock = DockStyle.Fill
+                SizeifierForm.Visible = True
+                'localWindow = SizeifierWindow
+                AddinGlobal.DockableList.Add(SizeifierWindow)
+                'Window = SizeifierWindow
 
             End If
         End Sub
