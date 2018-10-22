@@ -1,7 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports Inventor
 Imports ContentCenterSizeifier.ContentCenterSizeifier
-Imports log4net
 Imports System.Linq
 
 Public Class SizeifierForm
