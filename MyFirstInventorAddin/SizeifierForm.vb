@@ -47,14 +47,21 @@ Public Class SizeifierForm
     End Sub
 
     Private Sub cbbLength_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbLength.SelectedIndexChanged
-
-        Me.ListSizes.DataSource = (From desigRow As ContentTableRow In AddinGlobal.family.TableRows
-                                   Let designation As String = desigRow.GetCellValue("DESIGNATION")
-                                   Where designation.EndsWith(cbbLength.SelectedItem.ToString)
-                                   Select designation).Distinct.ToList()
+        If Not AddinGlobal.family Is Nothing Then
+            Me.ListSizes.DataSource = (From desigRow As ContentTableRow In AddinGlobal.family.TableRows
+                                       Let designation As String = desigRow.GetCellValue("DESIGNATION")
+                                       Where designation.EndsWith(cbbLength.SelectedItem.ToString)
+                                       Select designation).Distinct.ToList()
+        End If
     End Sub
 
     Private Sub cbbDiameter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbDiameter.SelectedIndexChanged
+        If Not AddinGlobal.family Is Nothing Then
+            ListSizes.DataSource = (From diameterRow As ContentTableRow In AddinGlobal.family.TableRows
+                                    Let diameter As String = diameterRow.GetCellValue("SIZE_SEL")
+                                    Where diameter.Contains(cbbDiameter.SelectedItem.ToString()) And diameter.Contains(cbbLength.SelectedItem.ToString())
+                                    Select diameter).Distinct.ToList()
+        End If
         'Throw New NotImplementedException
     End Sub
 
